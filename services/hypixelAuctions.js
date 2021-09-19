@@ -110,7 +110,7 @@ function parseAuctions(auctions) {
                     }
                 } else if (auction['starting_bid'] < results[index].next_price) {
                     results[index].next_price = auction['starting_bid']
-                    results[index].count++
+                    results[index].count += 1
                 }
 
             } else {
