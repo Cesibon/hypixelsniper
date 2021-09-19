@@ -16,13 +16,10 @@ let data = [];
         return
     }
     data = Object.values(res)
-    for(const i in data){
-        data[i]['price_float'] = data[i].next_price - data[i].price
-    }
   
     console.log(data)
   } catch (error) {
-    setTimeout(fetchData, 10000)
+    setTimeout(fetchData, 30000)
   }
 
 })()

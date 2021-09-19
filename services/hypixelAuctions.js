@@ -2,7 +2,26 @@ const axios = require('axios')
 
 const base_url = "https://api.hypixel.net/skyblock/auctions?page="
 // stuff to remove
-const REFORGES = [" ✦", "⚚ ", " ✪", "✪", "Stiff ", "Lucky ", "Jerry's ", "Dirty ", "Fabled ", "Suspicious ", "Gilded ", "Warped ", "Withered ", "Bulky ", "Stellar ", "Heated ", "Ambered ", "Fruitful ", "Magnetic ", "Fleet ", "Mithraic ", "Auspicious ", "Refined ", "Headstrong ", "Precise ", "Spiritual ", "Moil ", "Blessed ", "Toil ", "Bountiful ", "Candied ", "Submerged ", "Reinforced ", "Cubic ", "Warped ", "Undead ", "Ridiculous ", "Necrotic ", "Spiked ", "Jaded ", "Loving ", "Perfect ", "Renowned ", "Giant ", "Empowered ", "Ancient ", "Sweet ", "Silky ", "Bloody ", "Shaded ", "Gentle ", "Odd ", "Fast ", "Fair ", "Epic ", "Sharp ", "Heroic ", "Spicy ", "Legendary ", "Deadly ", "Fine ", "Grand ", "Hasty ", "Neat ", "Rapid ", "Unreal ", "Awkward ", "Rich ", "Clean ", "Fierce ", "Heavy ", "Light ", "Mythic ", "Pure ", "Smart ", "Titanic ", "Wise ", "Bizarre ", "Itchy ", "Ominous ", "Pleasant ", "Pretty ", "Shiny ", "Simple ", "Strange ", "Vivid ", "Godly ", "Demonic ", "Forceful ", "Hurtful ", "Keen ", "Strong ", "Superior ", "Unpleasant ", "Zealous "]
+const REFORGES = [
+    " ✦", "⚚ ", " ✪", "✪", "Stiff ", 
+    "Lucky ", "Jerry's ", "Dirty ", "Fabled ", 
+    "Suspicious ", "Gilded ", "Warped ", "Withered ", 
+    "Bulky ", "Stellar ", "Heated ", "Ambered ", "Fruitful ", 
+    "Magnetic ", "Fleet ", "Mithraic ", "Auspicious ", "Refined ", 
+    "Headstrong ", "Precise ", "Spiritual ", "Moil ", "Blessed ", "Toil ", 
+    "Bountiful ", "Candied ", "Submerged ", "Reinforced ", "Cubic ", "Warped ", 
+    "Undead ", "Ridiculous ", "Necrotic ", "Spiked ", "Jaded ", "Loving ", "Perfect ", 
+    "Renowned ", "Giant ", "Empowered ", "Ancient ", "Sweet ", "Silky ", "Bloody ", 
+    "Shaded ", "Gentle ", "Odd ", "Fast ", "Fair ", "Epic ", "Sharp ", "Heroic ", 
+    "Spicy ", "Legendary ", "Deadly ", "Fine ", "Grand ", "Hasty ", "Neat ", 
+    "Rapid ", "Unreal ", "Awkward ", "Rich ", "Clean ", "Fierce ", 
+    "Heavy ", "Light ", "Mythic ", "Pure ", "Smart ", "Salty ",
+    "Titanic ", "Wise ", "Bizarre ", "Itchy ", 
+    "Ominous ", "Pleasant ", "Pretty ", 
+    "Shiny ", "Simple ", "Strange ", "Vivid ", 
+    "Godly ", "Demonic ", "Forceful ", "Hurtful ", "Keen ", 
+    "Strong ", "Superior ", "Unpleasant ", "Zealous "
+]
 
 
 let toppage, now,
@@ -84,6 +103,9 @@ function parseAuctions(auctions) {
                         name: auction['item_name'],
                         price: auction['starting_bid'],
                         next_price: results[index].price,
+                        price_float: results[index].price - auction['starting_bid'],
+                        price_float_percent: auction['starting_bid'] / results[index].price * 100 + '%',
+                        tier: auction['tier'],
                         count: results[index].count++
                     }
                 } else if (auction['starting_bid'] < results[index].next_price) {
@@ -96,6 +118,7 @@ function parseAuctions(auctions) {
                     uuid: auction['uuid'],
                     name: auction['item_name'],
                     price: auction['starting_bid'],
+                    tier: auction['tier'],
                     next_price: false,
                     count: 1
                 }
