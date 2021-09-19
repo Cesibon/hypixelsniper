@@ -105,7 +105,7 @@ function parseAuctions(auctions) {
                         price: auction['starting_bid'],
                         next_price: results[index].price,
                         price_float: results[index].price - auction['starting_bid'],
-                        price_float_percent: results[index].price / auction['starting_bid'] * 100 - 100 + '%',
+                        price_float_percent: Math.floor(results[index].price / auction['starting_bid'] * 100 - 100) + '%',
                         tier: auction['tier'],
                         count: count
                     }
