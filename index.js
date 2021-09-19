@@ -28,7 +28,7 @@ let data = [];
 })()
 
 express()
-  .use(express.static(path.join(__dirname, './client/build/')))
+  .use(express.static(path.join(__dirname, './build/')))
   .get('/data', async(req, res) => {
     res.json(data)
   })
