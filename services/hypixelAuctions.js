@@ -96,6 +96,7 @@ function parseAuctions(auctions) {
             // if the current item already has a price in the prices map, the price is updated
             if (results[index]) {
 
+                const count = results[index].count + 1
                 if (auction['starting_bid'] < results[index].price) {
 
                     results[index] = {
@@ -104,13 +105,13 @@ function parseAuctions(auctions) {
                         price: auction['starting_bid'],
                         next_price: results[index].price,
                         price_float: results[index].price - auction['starting_bid'],
-                        price_float_percent: auction['starting_bid'] / results[index].price * 100 + '%',
+                        price_float_percent: results[index].price / auction['starting_bid'] * 100 + '%',
                         tier: auction['tier'],
-                        count: results[index].count++
+                        count: count
                     }
                 } else if (auction['starting_bid'] < results[index].next_price) {
                     results[index].next_price = auction['starting_bid']
-                    results[index].count += 1
+                    results[index].count = count
                 }
 
             } else {
