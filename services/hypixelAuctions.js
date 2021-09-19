@@ -26,7 +26,7 @@ async function snipe() {
 
     const step = 5
 
-    for (let base = 0; base < 1 / step; base++) {
+    for (let base = 0; base < toppage / step; base++) {
         const req = []
         for (let page = 1; page <= step; page++) {
             const p = (base * step + page)
