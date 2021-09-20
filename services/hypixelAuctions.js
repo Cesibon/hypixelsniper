@@ -111,6 +111,8 @@ function parseAuctions(auctions) {
                     }
                 } else if (auction['starting_bid'] < results[index].next_price) {
                     results[index].next_price = auction['starting_bid']
+                    results[index].price_float = auction['starting_bid'] - results[index].price
+                    results[index].price_float_percent = Math.floor(auction['starting_bid'] / results[index].price * 100 - 100)
                     results[index].count = count
                 }
 
