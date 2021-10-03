@@ -78,7 +78,7 @@ function escapeRegExp(string) {
 }
 
 function replaceAll(str, match, replacement) {
-    return str.replace(new RegExp(escapeRegExp(match), 'g'), () => replacement).replace(/\[.*\]\s/g, '');
+    return str.replace(new RegExp(escapeRegExp(match), 'g'), () => replacement);
 }
 
 function parseAuctions(auctions) {
@@ -89,7 +89,7 @@ function parseAuctions(auctions) {
         if (!auction['claimed'] && auction.bin && !auction["item_lore"].includes('Furniture')) {
 
             // removes level if it's a pet, also 
-            let index = auction['item_name'].replace("\[.*\]", "") + auction['tier']
+            let index = auction['item_name'].replace(/\[.*\]\s/g, '') + auction['tier']
             // removes reforges and other yucky characters
             REFORGES.map(x => index = replaceAll(index, x, ""))
 
