@@ -74,7 +74,7 @@ async function snipe() {
 }
 
 function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\[.*\]\s/g, ''); // $& means the whole matched string
 }
 
 function replaceAll(str, match, replacement) {
